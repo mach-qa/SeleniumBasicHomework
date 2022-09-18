@@ -21,7 +21,7 @@ public class WindowsTabsTests extends TestSetup {
         setElementCssPath("#newBrowserWindow").click();
 
         windowHandleLoop(originalWindow);
-        Thread.sleep (5500);
+        Thread.sleep (1500);
 
         //getDriver().switchTo().newWindow(WindowType.WINDOW);
 
@@ -36,7 +36,7 @@ public class WindowsTabsTests extends TestSetup {
         setElementCssPath("#newMessageWindow").click();
 
         windowHandleLoop(originalWindow);
-        Thread.sleep (5500);
+        Thread.sleep (1500);
         //getDriver().switchTo().newWindow(WindowType.WINDOW);
 
         String confirmNewWindowMessage = setElementCssPath("body").getText();
@@ -48,9 +48,9 @@ public class WindowsTabsTests extends TestSetup {
         getDriver().switchTo().window(originalWindow);
 
         /////////////////
-        setElementCssPath("#newMessageWindow").click();
+        setElementCssPath("#newBrowserTab").click();
 
-        Thread.sleep (5500);
+        Thread.sleep (1500);
         windowHandleLoop(originalWindow);
 
         String confirmNewTabURL = getDriver().getTitle();
