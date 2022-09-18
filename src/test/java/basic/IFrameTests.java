@@ -20,24 +20,22 @@ public class IFrameTests extends TestSetup {
         getDriver().get("https://seleniumui.moderntester.pl/iframes.php");
 
         getDriver().switchTo().frame("iframe1");
-        getDriver().findElement(By.id("inputFirstName3")).sendKeys("Piter");
-        getDriver().findElement(By.id("inputSurname3")).sendKeys("Piter");
+        setElementCssPath("#inputFirstName3").sendKeys("Piter");
+        setElementCssPath("#inputSurname3").sendKeys("Machre");
 
         getDriver().switchTo().defaultContent();
         getDriver().switchTo().frame("iframe2");
-        getDriver().findElement(By.id("inputLogin")).sendKeys("Piter");
-        getDriver().findElement(By.id("inputPassword")).sendKeys("12353");
+        setElementCssPath("#inputLogin").sendKeys("Piter");
+        setElementCssPath("#inputPassword").sendKeys("12353");
 
-        Select continents = new Select(getDriver().findElement(By.id("inlineFormCustomSelectPref")));
-        continents.selectByValue("Asia");
+        Select continents = new Select(setElementCssPath("#inlineFormCustomSelectPref"));
+        continents.selectByValue("asia");
 
-        Random randomGrid = new Random();
-        List<WebElement> experience = getDriver().findElements(By.name("gridRadios"));
-        experience.get(randomGrid.nextInt(experience.size())).click();
+        List<WebElement> experience = createListOfElementsByCssPath("[name=gridRadios]");
+        getRandomRowInList(experience).click();
 
         getDriver().switchTo().defaultContent();
-        getDriver().findElement(By.linkText("Basic")).click();
-
+        setElementCssPath(".nav-ite").click();
     }
 
 }

@@ -25,40 +25,42 @@ public class FormTests extends TestSetup {
         Random randomGrid = new Random();
 
         //First Name
-        getDriver().findElement(By.id("inputFirstName3")).sendKeys("Tomasz");
+        setElementCssPath("#inputFirstName3").sendKeys("Tomasz");
         //Last Name
-        getDriver().findElement(By.id("inputLastName3")).sendKeys("Nowak");
+        setElementCssPath("#inputLastName3").sendKeys("Nowak");
         //E-mail
-        getDriver().findElement(By.id("inputEmail3")).sendKeys("t.nowak@gmail.com");
-        //Sex
+        setElementCssPath("#inputEmail3").sendKeys("t.nowak@gmail.com");
+        //Sex sprawdzić jak zredukować
         List<WebElement> sexGrid = getDriver().findElements(By.name("gridRadiosSex"));
         sexGrid.get(randomGrid.nextInt(sexGrid.size())).click();
         //Age
-        getDriver().findElement(By.id("inputAge3")).sendKeys("28");
-        //Year of Experience
+        setElementCssPath("#inputAge3").sendKeys("28");
+        //Year of Experience sprawdzić jak zredukować
         List<WebElement> experience = getDriver().findElements(By.name("gridRadiosExperience"));
         experience.get(randomGrid.nextInt(experience.size())).click();
-        //Profession
+        //Profession sprawdzić jak zredukować
         List<WebElement> professionsList = getDriver().findElements(By.cssSelector(".checkbox-profession"));
-        WebElement randomProfession = professionsList.get(new Random().nextInt(professionsList.size()));
-        randomProfession.click();
+        professionsList.get(new Random().nextInt(professionsList.size())).click();
+        //WebElement randomProfession = professionsList.get(new Random().nextInt(professionsList.size()));
+        //randomProfession.click();
         //Continents
-        Select continents = new Select(getDriver().findElement(By.cssSelector("#selectContinents")));
+        Select continents = new Select(setElementCssPath("#selectContinents"));
         continents.selectByValue("asia");
-        //Selenium Commands
+        //Selenium Commands sprawdzić jak zredukować
         List<WebElement> seleniumCommandsList = getDriver().findElements(By.cssSelector("#selectSeleniumCommands"));
-        WebElement randomCommand = seleniumCommandsList.get(new Random().nextInt(seleniumCommandsList.size()));
-        randomCommand.click();
+        seleniumCommandsList.get(new Random().nextInt(seleniumCommandsList.size())).click();
+        //WebElement randomCommand = seleniumCommandsList.get(new Random().nextInt(seleniumCommandsList.size()));
+        //randomCommand.click();
 
         //File
         File file = new File("src/main/resources/file.txt");
-        getDriver().findElement(By.id("chooseFile")).sendKeys(file.getAbsolutePath());
+        setElementCssPath("#chooseFile").sendKeys(file.getAbsolutePath());
 
         //Button
-        getDriver().findElement(By.cssSelector(".btn-primary")).click();
+        setElementCssPath(".btn-primary").click();
 
         //Assertion
-        String confirmationMessage = getDriver().findElement(By.id("validator-message")).getText();
+        String confirmationMessage = setElementCssPath("#validator-message").getText();
         assertThat(confirmationMessage).isEqualTo("Form send with success");
     }
 }
