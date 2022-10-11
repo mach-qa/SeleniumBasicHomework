@@ -4,6 +4,10 @@ import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,8 +16,9 @@ public class AlertsTests extends TestSetup {
     @Test
     @DisplayName("Simple Alert pop-up")
     @Tag("Alert")
+    @Tag("Basic")
     void verifySimpleAlertPopUp() {
-        getDriver().get("https://seleniumui.moderntester.pl/alerts.php");
+        getDriver().get("http://51.75.61.161:9102/alerts.php");
 
         setElementCssPath("#simple-alert").click();
         getDriver().switchTo().alert().accept();
@@ -25,8 +30,9 @@ public class AlertsTests extends TestSetup {
     @Test
     @DisplayName("Prompt Alert box")
     @Tag("Alert")
+    @Tag("Basic")
     void verifyPromptAlertBox() {
-        getDriver().get("https://seleniumui.moderntester.pl/alerts.php");
+        getDriver().get("http://51.75.61.161:9102/alerts.php");
 
         String promptAlertInput = "Darth Vader";
 
@@ -41,8 +47,9 @@ public class AlertsTests extends TestSetup {
     @Test
     @DisplayName("Confirm Alert box")
     @Tag("Alert")
+    @Tag("Basic")
     void verifyConfirmAlertBox() {
-        getDriver().get("https://seleniumui.moderntester.pl/alerts.php");
+        getDriver().get("http://51.75.61.161:9102/alerts.php");
 
         setElementCssPath("#confirm-alert").click();
         getDriver().switchTo().alert().accept();
@@ -58,11 +65,15 @@ public class AlertsTests extends TestSetup {
     @Test
     @DisplayName("Delayed Alert")
     @Tag("Alert")
-    void verifyDelayedAlert() throws InterruptedException {
-        getDriver().get("https://seleniumui.moderntester.pl/alerts.php");
+    @Tag("Basic")
+    void verifyDelayedAlert() {
+        getDriver().get("http://51.75.61.161:9102/alerts.php");
 
         setElementCssPath("#delayed-alert").click();
-        Thread.sleep (5500);
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+
         getDriver().switchTo().alert().accept();
         String delayedLabel = setElementCssPath("#delayed-alert-label").getText();
         assertThat(delayedLabel).isEqualTo("OK button pressed");

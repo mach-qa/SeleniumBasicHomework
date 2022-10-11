@@ -14,9 +14,10 @@ public class DroppableTests extends TestSetup {
     @Test
     @DisplayName("Droppable Tests")
     @Tag("Droppable")
+    @Tag("Interactions")
     void itemShouldBeDroppable() {
 
-        getDriver().get("https://seleniumui.moderntester.pl/droppable.php");
+        getDriver().get("http://51.75.61.161:9102/droppable.php");
 
         WebElement drag = setElementCssPath("#draggable");
         WebElement drop = setElementCssPath("#droppable");

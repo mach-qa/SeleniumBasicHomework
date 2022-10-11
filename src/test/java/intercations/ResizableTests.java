@@ -12,12 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResizableTests extends TestSetup {
 
+    //TODO Zrobić według zadania domowego
+
     @Test
     @DisplayName("Resizable Tests")
     @Tag("Resizable")
+    @Tag("Interactions")
     void itemShouldBeResizable() {
 
-        getDriver().get("https://seleniumui.moderntester.pl/resizable.php");
+        getDriver().get("http://51.75.61.161:9102/resizable.php");
 
         WebElement resize = setElementCssPath(".ui-icon");
         WebElement resizeBox = setElementCssPath("#resizable");

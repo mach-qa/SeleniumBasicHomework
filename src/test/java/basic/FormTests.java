@@ -16,11 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormTests extends TestSetup {
 
+    //TODO Poprawić i zrobić w Page Object Pattern
+
     @Test
     @DisplayName("Form Tests")
     @Tag("Form")
+    @Tag("Basic")
     void shouldFillFormWithSuccess() {
-        getDriver().get("https://seleniumui.moderntester.pl/form.php");
+        getDriver().get("http://51.75.61.161:9102/form.php");
 
         Random randomGrid = new Random();
 

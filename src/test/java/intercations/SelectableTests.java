@@ -16,9 +16,10 @@ public class SelectableTests extends TestSetup {
     @Test
     @DisplayName("Selectable Tests")
     @Tag("Selectable")
+    @Tag("Interactions")
     void verifyMultipleSelectFeature() {
 
-        getDriver().get("https://seleniumui.moderntester.pl/selectable.php");
+        getDriver().get("http://51.75.61.161:9102/selectable.php");
 
         List<WebElement> itemLists = createListOfElementsByCssPath(".ui-widget-content");
 
@@ -26,7 +27,7 @@ public class SelectableTests extends TestSetup {
         actions.keyDown(Keys.CONTROL)
                 .click(itemLists.get(0))
                 .click(itemLists.get(2))
-                .click(itemLists.get(4))
+                .click(itemLists.get(3))
                 .keyUp(Keys.CONTROL)
                 .build().perform();
 

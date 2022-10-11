@@ -4,29 +4,51 @@ import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WindowsTabsTests extends TestSetup {
 
+    //TODO wyczyścić ze znaków i zmniejszyć (?)
+
     @Test
     @DisplayName("Window/Tabs Tests")
     @Tag("Window")
+    @Tag("Basic")
     void shouldOpenNewWindowWithSuccess() throws InterruptedException {
 
-        getDriver().get("https://seleniumui.moderntester.pl/windows-tabs.php");
+        getDriver().get("http://51.75.61.161:9102/windows-tabs.php");
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 
         String originalWindow = getDriver().getWindowHandle();
 
         setElementCssPath("#newBrowserWindow").click();
 
         windowHandleLoop(originalWindow);
-        Thread.sleep (1500);
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-        //getDriver().switchTo().newWindow(WindowType.WINDOW);
+        List<WebElement> newBrowserMountainsTable = createListOfElementsByCssPath("tbody tr");
 
-        String confirmNewWindowURL = getDriver().getTitle();
-        assertThat(confirmNewWindowURL).isEqualTo("Automation Pratice");
+        for (WebElement mountain : newBrowserMountainsTable) {
+            String peakHeight = mountain.findElements(By.cssSelector("td")).get(3).getText();
+            String peakRegion = mountain.findElements(By.cssSelector("td")).get(2).getText();
+
+            String peakRank = mountain.findElements(By.cssSelector("th")).get(0).getText();
+            String peakName = mountain.findElements(By.cssSelector("td")).get(0).getText();
+            String peakRange = mountain.findElements(By.cssSelector("td")).get(1).getText();
+            if (Integer.parseInt(peakHeight) >= 4000
+                    && peakRegion.contains("Switzerland")) {
+                System.out.println(peakRank + ". " + peakName + ", " + peakRange);
+            }
+        }
 
         getDriver().close();
         getDriver().switchTo().window(originalWindow);
@@ -36,8 +58,7 @@ public class WindowsTabsTests extends TestSetup {
         setElementCssPath("#newMessageWindow").click();
 
         windowHandleLoop(originalWindow);
-        Thread.sleep (1500);
-        //getDriver().switchTo().newWindow(WindowType.WINDOW);
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
         String confirmNewWindowMessage = setElementCssPath("body").getText();
         assertThat(confirmNewWindowMessage)
@@ -50,10 +71,23 @@ public class WindowsTabsTests extends TestSetup {
         /////////////////
         setElementCssPath("#newBrowserTab").click();
 
-        Thread.sleep (1500);
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         windowHandleLoop(originalWindow);
 
-        String confirmNewTabURL = getDriver().getTitle();
-        assertThat(confirmNewTabURL).isEqualTo("Automation Pratice");
+        List<WebElement> newTabMountainsTable = createListOfElementsByCssPath("tbody tr");
+
+        for (WebElement mountain : newTabMountainsTable) {
+            String peakHeight = mountain.findElements(By.cssSelector("td")).get(3).getText();
+            String peakRegion = mountain.findElements(By.cssSelector("td")).get(2).getText();
+
+            String peakRank = mountain.findElements(By.cssSelector("th")).get(0).getText();
+            String peakName = mountain.findElements(By.cssSelector("td")).get(0).getText();
+            String peakRange = mountain.findElements(By.cssSelector("td")).get(1).getText();
+            if (Integer.parseInt(peakHeight) >= 4000
+                    && peakRegion.contains("Switzerland")) {
+                System.out.println(peakRank + ". " + peakName + ", " + peakRange);
+            }
+        }
+        getDriver().close();
     }
 }

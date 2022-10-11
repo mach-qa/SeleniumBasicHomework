@@ -12,12 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DraggableTests extends TestSetup {
 
+    //TODO Zrobić według zadania domowego
+
     @Test
     @DisplayName("Draggable Tests")
     @Tag("Draggable")
+    @Tag("Interactions")
     void itemShouldBeDraggable() {
 
-        getDriver().get("https://seleniumui.moderntester.pl/draggable.php");
+        getDriver().get("http://51.75.61.161:9102/draggable.php");
 
         WebElement drag = setElementCssPath("#draggable");
 

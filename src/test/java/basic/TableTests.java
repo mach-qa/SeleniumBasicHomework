@@ -8,18 +8,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.Objects;
 
 public class TableTests extends TestSetup {
-
-    //do poprawienia jeszcze
 
     @Test
     @DisplayName("Table Tests")
     @Tag("Table")
+    @Tag("Basic")
     void tableShouldContainsSomeData() throws Exception {
 
-        getDriver().get("https://seleniumui.moderntester.pl/table.php");
+        getDriver().get("http://51.75.61.161:9102/table.php");
 
         List<WebElement> mountainsTable = createListOfElementsByCssPath("tbody tr");
 

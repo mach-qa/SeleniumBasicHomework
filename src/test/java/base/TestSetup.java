@@ -16,6 +16,8 @@ public class TestSetup {
 
     static WebDriver driver;
 
+    //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
     protected WebDriver getDriver() {
         return driver;
     }
