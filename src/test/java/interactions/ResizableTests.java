@@ -1,4 +1,4 @@
-package intercations;
+package interactions;
 
 import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +11,6 @@ import org.openqa.selenium.interactions.Actions;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResizableTests extends TestSetup {
-
-    //TODO Zrobić według zadania domowego
 
     @Test
     @DisplayName("Resizable Tests")
@@ -27,13 +25,26 @@ public class ResizableTests extends TestSetup {
 
         Dimension currentLocation = resizeBox.getSize();
 
+        resizeBoxByOffset(resize, 10, 0);
+
+        assertThat(resizeBox.getSize()).isNotEqualTo(currentLocation);
+
+        Dimension currentLocation2 = resizeBox.getSize();
+
+        resizeBoxByOffset(resize, 0, 10);
+        assertThat(resizeBox.getSize()).isNotEqualTo(currentLocation2);
+
+        Dimension currentLocation3 = resizeBox.getSize();
+
+        resizeBoxByOffset(resize, 10, 10);
+        assertThat(resizeBox.getSize()).isNotEqualTo(currentLocation3);
+    }
+
+    private void resizeBoxByOffset (WebElement resize, int X, int Y) {
         Actions actions = new Actions(getDriver());
         actions.clickAndHold(resize)
-                .moveByOffset(420, 173)
+                .moveByOffset(X, Y)
                 .build()
                 .perform();
-
-        Dimension newLocation = resizeBox.getSize();
-        assertThat(newLocation).isNotEqualTo(currentLocation);
     }
 }

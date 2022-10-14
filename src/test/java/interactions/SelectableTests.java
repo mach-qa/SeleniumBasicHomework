@@ -1,4 +1,4 @@
-package intercations;
+package interactions;
 
 import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;

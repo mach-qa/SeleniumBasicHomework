@@ -1,4 +1,4 @@
-package intercations;
+package interactions;
 
 import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +23,9 @@ public class DraggableTests extends TestSetup {
         getDriver().get("http://51.75.61.161:9102/draggable.php");
 
         WebElement drag = setElementCssPath("#draggable");
+        WebElement pagesize = setElementCssPath("html");
+
+        pagesize.getSize();
 
         Point currentLocation = drag.getLocation();
 
