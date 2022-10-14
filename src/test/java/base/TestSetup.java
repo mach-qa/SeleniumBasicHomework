@@ -29,15 +29,6 @@ public class TestSetup {
         return getDriver().findElements(By.cssSelector(cssPath));
     }
 
-    protected void windowHandleLoop (String originalWindow){
-        for (String windowHandle : getDriver().getWindowHandles()) {
-            if(!originalWindow.contentEquals(windowHandle)) {
-                getDriver().switchTo().window(windowHandle);
-                break;
-            }
-        }
-    }
-
     protected WebElement getRandomRowInList (List<WebElement> elementsList) {
         Random randomGrid = new Random();
         return elementsList.get(randomGrid.nextInt(elementsList.size()));
