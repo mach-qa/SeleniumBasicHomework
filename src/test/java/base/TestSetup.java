@@ -16,8 +16,6 @@ public class TestSetup {
 
     static WebDriver driver;
 
-    //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
     protected WebDriver getDriver() {
         return driver;
     }
@@ -25,6 +23,7 @@ public class TestSetup {
     protected WebElement setElementCssPath (String cssPath) {
         return getDriver().findElement(By.cssSelector(cssPath));
     }
+
     protected List<WebElement> createListOfElementsByCssPath (String cssPath) {
         return getDriver().findElements(By.cssSelector(cssPath));
     }

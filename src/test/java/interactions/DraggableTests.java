@@ -22,17 +22,18 @@ public class DraggableTests extends TestSetup {
 
         getDriver().get("http://51.75.61.161:9102/draggable.php");
 
-        WebElement drag = setElementCssPath("#draggable");
-        WebElement pagesize = setElementCssPath("html");
+        WebElement draggableBox = setElementCssPath("#draggable");
+        WebElement pageSize = setElementCssPath("html");
 
-        pagesize.getSize();
+        int x = pageSize.getSize().getWidth();
+        int y = pageSize.getSize().getHeight();
 
-        Point currentLocation = drag.getLocation();
+        Point currentLocation = draggableBox.getLocation();
 
         Actions actions = new Actions(getDriver());
-        actions.dragAndDropBy(drag, 420, 173).build().perform();
+        actions.clickAndHold().moveByOffset(x, y).release().perform();
 
-        Point newLocation = drag.getLocation();
+        Point newLocation = draggableBox.getLocation();
 
         assertThat(newLocation).isNotEqualTo(currentLocation);
     }
