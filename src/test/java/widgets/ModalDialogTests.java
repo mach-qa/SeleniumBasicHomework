@@ -40,7 +40,7 @@ public class ModalDialogTests extends TestSetup {
 
         setElementCssPath("button:first-child").click();
 
-        List<WebElement> newAddedUser = getDriver().findElements(By.cssSelector("tbody tr:last-child td"));
+        List<WebElement> newAddedUser = getDriver().findElements(By.cssSelector("tbody tr td"));
 
         assertThat(newAddedUser.get(0).getText()).isEqualTo(name);
         assertThat(newAddedUser.get(1).getText()).isEqualTo(email);

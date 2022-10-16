@@ -19,15 +19,19 @@ public class TableTests extends TestSetup {
 
         getDriver().get("http://51.75.61.161:9102/table.php");
 
-        List<WebElement> mountainsTable = createListOfElementsByCssPath("tbody tr");
+        List<WebElement> mountainsTable = getDriver().findElements(By.cssSelector("tbody tr"));
 
-        for (WebElement mountain : mountainsTable) {
-            String peakHeight = mountain.findElements(By.cssSelector("td")).get(3).getText();
-            String peakRegion = mountain.findElements(By.cssSelector("td")).get(2).getText();
+        filterTableList(mountainsTable);
+    }
 
-            String peakRank = mountain.findElements(By.cssSelector("th")).get(0).getText();
-            String peakName = mountain.findElements(By.cssSelector("td")).get(0).getText();
-            String peakRange = mountain.findElements(By.cssSelector("td")).get(1).getText();
+    public void filterTableList(List<WebElement> table) {
+        for (WebElement index : table) {
+            String peakHeight = index.findElements(By.cssSelector("td")).get(3).getText();
+            String peakRegion = index.findElements(By.cssSelector("td")).get(2).getText();
+
+            String peakRank = index.findElements(By.cssSelector("th")).get(0).getText();
+            String peakName = index.findElements(By.cssSelector("td")).get(0).getText();
+            String peakRange = index.findElements(By.cssSelector("td")).get(1).getText();
             if (Integer.parseInt(peakHeight) >= 4000
                     && peakRegion.contains("Switzerland")) {
                 System.out.println(peakRank + ". " + peakName + ", " + peakRange);

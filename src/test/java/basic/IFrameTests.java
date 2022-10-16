@@ -4,6 +4,7 @@ import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -30,7 +31,7 @@ public class IFrameTests extends TestSetup {
         Select continents = new Select(setElementCssPath("#inlineFormCustomSelectPref"));
         continents.selectByValue("asia");
 
-        List<WebElement> experience = createListOfElementsByCssPath("[name=gridRadios]");
+        List<WebElement> experience = getDriver().findElements(By.cssSelector("[name=gridRadios]"));
         getRandomRowInList(experience).click();
 
         getDriver().switchTo().defaultContent();

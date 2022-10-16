@@ -21,7 +21,7 @@ public class SortableTests extends TestSetup {
 
         getDriver().get("http://51.75.61.161:9102/sortable.php");
 
-        List<WebElement> shuffledListOfItems = createListOfElementsByCssPath("#sortable li");
+        List<WebElement> shuffledListOfItems = getDriver().findElements(By.cssSelector("#sortable li"));
 
         Collections.shuffle(shuffledListOfItems);
 
@@ -35,5 +35,5 @@ public class SortableTests extends TestSetup {
         for (WebElement listRow : shuffledListOfItems) {
             System.out.println("Element: " +listRow.getText() + ", Location: " + listRow.getLocation());
         }
-        }
     }
+}

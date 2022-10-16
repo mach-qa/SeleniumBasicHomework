@@ -4,6 +4,7 @@ import base.TestSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class AutoCompleteTests extends TestSetup {
 
         setElementCssPath("#search").sendKeys("a");
 
-        List<WebElement> listFromAutoCompleteSearch = createListOfElementsByCssPath(".ui-menu-item");
+        List<WebElement> listFromAutoCompleteSearch = getDriver().findElements(By.cssSelector(".ui-menu-item"));
 
         for (WebElement position : listFromAutoCompleteSearch) {
             System.out.println(position.getText());

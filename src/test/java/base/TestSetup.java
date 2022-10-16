@@ -24,10 +24,6 @@ public class TestSetup {
         return getDriver().findElement(By.cssSelector(cssPath));
     }
 
-    protected List<WebElement> createListOfElementsByCssPath (String cssPath) {
-        return getDriver().findElements(By.cssSelector(cssPath));
-    }
-
     protected WebElement getRandomRowInList (List<WebElement> elementsList) {
         Random randomGrid = new Random();
         return elementsList.get(randomGrid.nextInt(elementsList.size()));

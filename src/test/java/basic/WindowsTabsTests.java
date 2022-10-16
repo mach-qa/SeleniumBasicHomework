@@ -32,7 +32,7 @@ public class WindowsTabsTests extends TestSetup {
         windowHandleLoop(originalWindow);
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-        List<WebElement> newBrowserMountainsTable = createListOfElementsByCssPath("tbody tr");
+        List<WebElement> newBrowserMountainsTable = getDriver().findElements(By.cssSelector("tbody tr"));
         printMountainsFromTable(newBrowserMountainsTable);
 
         getDriver().close();
@@ -59,7 +59,7 @@ public class WindowsTabsTests extends TestSetup {
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         windowHandleLoop(originalWindow);
 
-        List<WebElement> newTabMountainsTable = createListOfElementsByCssPath("tbody tr");
+        List<WebElement> newTabMountainsTable = getDriver().findElements(By.cssSelector("tbody tr"));
 
         printMountainsFromTable(newTabMountainsTable);
 
